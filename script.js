@@ -36,19 +36,29 @@ translateBtn.addEventListener("click", () => {
   fetchTranslation(text, "fr", "frenchOutput");
 });
 
-// Live Online Translation for ANY random word or sentence
+// Live Online Translation with Automatic Backup
 async function fetchTranslation(text, targetLang, elementId) {
   try {
+    // Primary API: Google Translate
     const googleUrl = `https://googleapis.com{targetLang}&dt=t&q=${encodeURIComponent(text)}`;
     const response = await fetch(googleUrl);
-    const data = await response.json();
+    if (!response.ok) throw new Error("Primary API blocked");
     
-    // Combine all translated parts into a full word/sentence
+    const data = await response.json();
+    // Correctly extract translated text from nested array
     const translatedText = data[0].map(item => item[0]).join("");
     document.getElementById(elementId).innerText = translatedText;
 
   } catch (error) {
-    document.getElementById(elementId).innerText = "Please check internet connection.";
+    try {
+      // Automatic Backup API: MyMemory
+      const backupUrl = `https://translated.net{encodeURIComponent(text)}&langpair=en|${targetLang}`;
+      const backupRes = await fetch(backupUrl);
+      const backupData = await backupRes.json();
+      document.getElementById(elementId).innerText = backupData.responseData.translatedText;
+    } catch (backupError) {
+      document.getElementById(elementId).innerText = "Network error. Please retry.";
+    }
   }
 }
 
