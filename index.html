@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anti-Gravity Multi-Language Translator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🚀 Anti-Gravity Translator</h1>
+      <p class="subtitle">Translate & Pronounce English into Spanish, German, and French</p>
+      <button id="gravityToggle" class="toggle-btn">Anti-Gravity: ON</button>
+    </header>
+
+    <div class="input-card">
+      <textarea id="englishInput" placeholder="Type an English word or sentence... (e.g., Hello, welcome to my college project)"></textarea>
+      <div class="input-controls">
+        <button id="listenEnglishBtn" class="secondary-btn">🔊 Listen (English)</button>
+        <button id="clearBtn" class="secondary-btn">✖ Clear</button>
+        <button id="translateBtn" class="primary-btn">Translate All</button>
+      </div>
+    </div>
+
+    <div class="cards-grid" id="cardsGrid">
+      <!-- Spanish Card -->
+      <div class="card float-1">
+        <div class="card-header">
+          <h3>🇪🇸 Spanish</h3>
+          <span class="badge">es-ES</span>
+        </div>
+        <p id="spanishOutput" class="output-text">Translation appears here...</p>
+        <div class="card-actions">
+          <button onclick="pronounceWord('spanishOutput', 'es-ES')">🔊 Pronounce</button>
+          <button onclick="copyText('spanishOutput')">📋 Copy</button>
+        </div>
+      </div>
+
+      <!-- German Card -->
+      <div class="card float-2">
+        <div class="card-header">
+          <h3>🇩🇪 German</h3>
+          <span class="badge">de-DE</span>
+        </div>
+        <p id="germanOutput" class="output-text">Translation appears here...</p>
+        <div class="card-actions">
+          <button onclick="pronounceWord('germanOutput', 'de-DE')">🔊 Pronounce</button>
+          <button onclick="copyText('germanOutput')">📋 Copy</button>
+        </div>
+      </div>
+
+      <!-- French Card -->
+      <div class="card float-3">
+        <div class="card-header">
+          <h3>🇫🇷 French</h3>
+          <span class="badge">fr-FR</span>
+        </div>
+        <p id="frenchOutput" class="output-text">Translation appears here...</p>
+        <div class="card-actions">
+          <button onclick="pronounceWord('frenchOutput', 'fr-FR')">🔊 Pronounce</button>
+          <button onclick="copyText('frenchOutput')">📋 Copy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
